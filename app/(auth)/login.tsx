@@ -4,9 +4,9 @@ import unit, { fontSizes } from '@/utils/dimensions'
 import { Ionicons } from '@expo/vector-icons'
  
 import { useRouter } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
 import {
-  ActivityIndicator,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -79,6 +79,8 @@ const Login = () => {
         style={{flex: 1}}
         keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
       >
+              <StatusBar style="dark" backgroundColor={Colors.white} />
+        
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
           keyboardShouldPersistTaps='handled'

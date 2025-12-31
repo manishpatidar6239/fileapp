@@ -3,21 +3,20 @@ import { Colors } from '@/constants/theme'
 import unit, { fontSizes } from '@/utils/dimensions'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
 import {
-  ActivityIndicator,
   Image,
+  KeyboardAvoidingView,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
   View
-} from 'react-native' 
-
-import { Toast } from 'toastify-react-native'
+} from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const SignUp = () => {
   const loading = 123
@@ -108,124 +107,141 @@ const SignUp = () => {
   }
 
   return (
-   <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{flex: 1}}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+    <SafeAreaView style={styles.container}>
+      <StatusBar style="dark" backgroundColor={Colors.white} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+      >
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps='handled'
+          showsVerticalScrollIndicator={false}
         >
-          <ScrollView
-            contentContainerStyle={styles.scrollContainer}
-            keyboardShouldPersistTaps='handled'
-            showsVerticalScrollIndicator={false}
-          >
-      <TouchableOpacity onPress={() => router.push('/home')}>
-        <Image style={styles.logo} source={require('@/assets/images/01.png')} />
-      </TouchableOpacity>
-      <Text style={styles.headerTitle}>Create Account ✨</Text>
-      <Text style={styles.subHeader}>Join us and get started!</Text>
-
-      <View style={styles.card}>
-        <Text style={styles.title}>Sign Up</Text>
-
-        <Text style={styles.label}>Full Name</Text>
-        <TextInput
-          placeholder='Enter your full name'
-          placeholderTextColor={Colors.light.primary[600]}
-          value={form.fullName}
-          onChangeText={value => handleChange('fullName', value)}
-          style={[
-            styles.input,
-            form.errors.fullName ? styles.inputError : null
-          ]}
-        />
-        {form.errors.fullName ? (
-          <Text style={styles.errorText}>{form.errors.fullName}</Text>
-        ) : null}
-
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          placeholder='Enter your email'
-          placeholderTextColor={Colors.light.primary[600]}
-          keyboardType='email-address'
-          value={form.email}
-          onChangeText={value => handleChange('email', value)}
-          style={[styles.input, form.errors.email ? styles.inputError : null]}
-        />
-        {form.errors.email ? (
-          <Text style={styles.errorText}>{form.errors.email}</Text>
-        ) : null}
-
-        <Text style={styles.label}>Password</Text>
-        <View style={styles.passwordContainer}>
-          <TextInput
-            placeholder='Create a password'
-            placeholderTextColor={Colors.light.primary[600]}
-            secureTextEntry={!form.showPassword}
-            value={form.password}
-            onChangeText={value => handleChange('password', value)}
-            style={[
-              styles.input,
-              styles.passwordInput,
-              form.errors.password ? styles.inputError : null
-            ]}
-          />
-          <TouchableOpacity
-            onPress={() =>
-              setForm(prev => ({ ...prev, showPassword: !prev.showPassword }))
-            }
-            style={styles.showHideButton}
-          >
-            <Text style={styles.showHideText}>
-              <Ionicons
-                name={form.showPassword ? 'eye-off' : 'eye'}
-                size={22}
-                color={Colors.light.primary}
-              />
-            </Text>
+          <TouchableOpacity onPress={() => router.push('/home')}>
+            <Image
+              style={styles.logo}
+              source={require('@/assets/images/01.png')}
+            />
           </TouchableOpacity>
-        </View>
-        {form.errors.password ? (
-          <Text style={styles.errorText}>{form.errors.password}</Text>
-        ) : null}
+          <Text style={styles.headerTitle}>Create Account ✨</Text>
+          <Text style={styles.subHeader}>Join us and get started!</Text>
 
-        <Text style={styles.label}>Confirm Password</Text>
-        <View style={styles.passwordContainer}>
-          <TextInput
-            placeholder='Re-enter your password'
-            placeholderTextColor={Colors.light.primary[600]}
-            value={form.confirmPassword}
-            secureTextEntry
-            onChangeText={value => handleChange('confirmPassword', value)}
-            style={[
-              styles.input,
-              styles.passwordInput,
-              form.errors.confirmPassword ? styles.inputError : null
-            ]}
-          />
-        </View>
-        {form.errors.confirmPassword ? (
-          <Text style={styles.errorText}>{form.errors.confirmPassword}</Text>
-        ) : null}
+          <View style={styles.card}>
+            <Text style={styles.title}>Sign Up</Text>
 
-        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-          <Text style={styles.buttonText}>Sign Up</Text>
-          {/* <Text style={styles.buttonText}>
+            <Text style={styles.label}>Full Name</Text>
+            <TextInput
+              placeholder='Enter your full name'
+              placeholderTextColor={Colors.light.primary[600]}
+              value={form.fullName}
+              onChangeText={value => handleChange('fullName', value)}
+              style={[
+                styles.input,
+                form.errors.fullName ? styles.inputError : null
+              ]}
+            />
+            {form.errors.fullName ? (
+              <Text style={styles.errorText}>{form.errors.fullName}</Text>
+            ) : null}
+
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              placeholder='Enter your email'
+              placeholderTextColor={Colors.light.primary[600]}
+              keyboardType='email-address'
+              value={form.email}
+              onChangeText={value => handleChange('email', value)}
+              style={[
+                styles.input,
+                form.errors.email ? styles.inputError : null
+              ]}
+            />
+            {form.errors.email ? (
+              <Text style={styles.errorText}>{form.errors.email}</Text>
+            ) : null}
+
+            <Text style={styles.label}>Password</Text>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                placeholder='Create a password'
+                placeholderTextColor={Colors.light.primary[600]}
+                secureTextEntry={!form.showPassword}
+                value={form.password}
+                onChangeText={value => handleChange('password', value)}
+                style={[
+                  styles.input,
+                  styles.passwordInput,
+                  form.errors.password ? styles.inputError : null
+                ]}
+              />
+              <TouchableOpacity
+                onPress={() =>
+                  setForm(prev => ({
+                    ...prev,
+                    showPassword: !prev.showPassword
+                  }))
+                }
+                style={styles.showHideButton}
+              >
+                <Text style={styles.showHideText}>
+                  <Ionicons
+                    name={form.showPassword ? 'eye-off' : 'eye'}
+                    size={22}
+                    color={Colors.light.primary}
+                  />
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {form.errors.password ? (
+              <Text style={styles.errorText}>{form.errors.password}</Text>
+            ) : null}
+
+            <Text style={styles.label}>Confirm Password</Text>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                placeholder='Re-enter your password'
+                placeholderTextColor={Colors.light.primary[600]}
+                value={form.confirmPassword}
+                secureTextEntry
+                onChangeText={value => handleChange('confirmPassword', value)}
+                style={[
+                  styles.input,
+                  styles.passwordInput,
+                  form.errors.confirmPassword ? styles.inputError : null
+                ]}
+              />
+            </View>
+            {form.errors.confirmPassword ? (
+              <Text style={styles.errorText}>
+                {form.errors.confirmPassword}
+              </Text>
+            ) : null}
+
+            <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+              <Text style={styles.buttonText}>Sign Up</Text>
+              {/* <Text style={styles.buttonText}>
             {loading ? (
               <ActivityIndicator size='small' color={Colors.white} />
             ) : (
               'Sign Up'
             )}
           </Text> */}
-        </TouchableOpacity>
-        <Text style={styles.footerText}>
-          Already have an account?{'  '}
-          <Text style={styles.linkText} onPress={() => router.push('/login')}>
-            Login
-          </Text>
-        </Text>
-      </View>
-    </ScrollView>
-    </KeyboardAvoidingView>
+            </TouchableOpacity>
+            <Text style={styles.footerText}>
+              Already have an account?{'  '}
+              <Text
+                style={styles.linkText}
+                onPress={() => router.push('/login')}
+              >
+                Login
+              </Text>
+            </Text>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   )
 }
 
@@ -233,18 +249,18 @@ export default SignUp
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: Colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
     paddingHorizontal: unit.windowWidth(0.06),
-    paddingVertical: unit.windowHeight(0.02)
+    paddingTop: unit.windowHeight(0.02),
+    width: '100%'
   },
-    scrollContainer: {
-    flexGrow: 1,
+  scrollContainer: {
+    backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
-    
+    flex: 1,
+    width: '100%'
   },
   logo: {
     width: unit.windowWidth(0.25),
