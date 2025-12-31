@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
-import React from 'react' 
+import React from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
  
 import unit from '@/utils/dimensions'
 
@@ -12,9 +12,7 @@ const PendingScreen = () => {
         style={{ flex: 1 }}
       >
         <View style={styles.container}>
-          <Text style={styles.textHead}>Pending (20)</Text>
-         
-    
+          <Text style={styles.textHead}>Pending (20)</Text> 
         </View>
       </ScrollView>
   

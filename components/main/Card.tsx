@@ -1,10 +1,12 @@
 import { Colors } from '@/constants/theme'
 import unit from '@/utils/dimensions'
+import { Link } from 'expo-router'
 import React from 'react'
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 
 interface CardProps {
   item: {
+    id: number
     customer_name: string
     mobile_number: string
     laptop_model: string
@@ -19,62 +21,63 @@ interface CardProps {
 }
 
 const Card = ({ item }: CardProps) => {
+ 
   return (
     <View style={styles.card}>
-      <View style={styles.content}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: item.images[0].url }}
-            style={styles.imageFirst}
-          />
-          <View style={styles.imageThumbnailContainer}>
-            {item.images.slice(1, 3).map((image, index) => (
-              <Image
-                key={index}
-                source={{ uri: image.url }}
-                style={styles.image}
-                accessibilityLabel={image.description}
-              />
-            ))}
+      <Link href={`/detail/${item.id}`}>
+        <View style={styles.content}>
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri: item.images[0].url }}
+              style={styles.imageFirst}
+            />
+            <View style={styles.imageThumbnailContainer}>
+              {item.images.slice(1, 3).map((image, index) => (
+                <Image
+                  key={index}
+                  source={{ uri: image.url }}
+                  style={styles.image}
+                  accessibilityLabel={image.description}
+                />
+              ))}
+            </View>
           </View>
-        </View>
-        <View style={styles.header}>
-          <View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                width: '100%',
-                justifyContent: 'space-between'
-              }}
-            >
-              <View>
-                <Text style={styles.customerName}>{item.customer_name}</Text>
-                <Text style={styles.title}>{item.mobile_number}</Text>
-                <Text style={styles.title}>{item.laptop_model}</Text>
-              </View>
-              <View style={styles.statusContainer}>
-                <Text style={styles.statusText}>{item.status}</Text>
+          <View style={styles.header}>
+            <View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  width: '100%',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <View>
+                  <Text style={styles.customerName}>{item.customer_name}</Text>
+                  <Text style={styles.title}>{item.mobile_number}</Text>
+                  <Text style={styles.title}>{item.laptop_model}</Text>
+                </View>
+                <View style={styles.statusContainer}>
+                  <Text style={styles.statusText}>{item.status}</Text>
+                </View>
               </View>
             </View>
-
-            {/*  */}
           </View>
         </View>
-      </View>
-      <View style={styles.bottomContainer}>
-        <Text style={styles.description}>{item.notes}</Text>
-        <View style={styles.costContainer}>
-          <View>
-            <Text style={styles.costText}>₹{item.estimate_price}</Text>
-            <Text style={styles.costHead}>Estimated cost</Text>
-          </View>
-          <View>
-            <Text style={styles.costText}>{item.payment_status}</Text>{' '}
-            <Text style={styles.costHead}>Amount Status</Text>
+        <View style={styles.bottomContainer}>
+          <Text style={styles.description}>{item.notes}</Text>
+          <View style={styles.costContainer}>
+            <View>
+              <Text style={styles.costText}>₹{item.estimate_price}</Text>
+              <Text style={styles.costHead}>Estimated cost</Text>
+            </View>
+            <View>
+              <Text style={styles.costText}>{item.payment_status}</Text>
+              <Text style={styles.costHead}>Amount Status</Text>
+            </View>
           </View>
         </View>
-      </View>
+      </Link>
     </View>
   )
 }

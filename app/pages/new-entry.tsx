@@ -1,9 +1,8 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
-import React from 'react'
-import Card from '@/components/main/Card'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { Colors } from '@/constants/theme'
 import unit from '@/utils/dimensions'
+import React from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const NewEntry = () => {
   return (
@@ -15,13 +14,7 @@ const NewEntry = () => {
       >
         <View style={styles.container}>
           <Text style={styles.textHead}>Pending (20)</Text>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          
         </View>
       </ScrollView>
     </SafeAreaView>

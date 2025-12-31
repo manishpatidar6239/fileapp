@@ -1,6 +1,6 @@
  
-import { router } from 'expo-router' 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
+import { router } from 'expo-router'
 
 export const menuData = [
   {
@@ -28,7 +28,7 @@ export const menuData = [
     key: 'received',
     bgColor: '#fff',
     img: require('@/assets/images/icons/calendar-edit.svg'),
-    url: () => router.push('/home'),
+    url: () => router.push('/pages/received'),
     icons: <MaterialIcons name='computer' size={80} color='black' />
   },
  
@@ -37,8 +37,8 @@ export const menuData = [
     name: 'Delivered',
     key: 'delivered',
     bgColor: '#fff',
-    img: require('@/assets/images/icons/fluent-color--slide-text-sparkle-28.svg'),
-    url: () => router.push('/home'),
+    img: require('@/assets/images/icons/bullet-list-square-sparkle-32.svg'),
+    url: () => router.push('/pages/delivered'),
     icons: <MaterialIcons name='computer' size={80} color='black' />
   },
   {
@@ -47,7 +47,7 @@ export const menuData = [
     key: 'pendingamount',
     bgColor: '#fff',
     img: require('@/assets/images/icons/calendar-edit.svg'),
-    url: () => router.push('/pending'),
+    url: () => router.push('/pages/pending-amount'),
     icons: <MaterialIcons name='computer' size={80} color='black' />
   },
   {
@@ -55,8 +55,8 @@ export const menuData = [
     name: 'Cancelled',
     key: 'cancelled',
     bgColor: '#fff',
-    img: require('@/assets/images/icons/bullet-list-square-sparkle-32.svg'),
-    url: () => router.push('/home'),
+    img: require('@/assets/images/icons/fluent-color--slide-text-sparkle-28.svg'),
+    url: () => router.push('/pages/cancelled'),
     icons: <MaterialIcons name='computer' size={80} color='black' />
   }
 ]
