@@ -23,6 +23,7 @@ export default function RootLayout () {
         <Stack>
           <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
           <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+          <Stack.Screen name='(dashboard)' options={{ headerShown: false }} />
           <Stack.Screen
             name='pages/new-entry'
             options={{ header: () => <CustomHeader /> }}

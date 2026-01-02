@@ -9,7 +9,7 @@ export const menuData = [
     key: 'dashboard',
     bgColor: '#fff',
     // url: () => router.push("/(tabs)/home/collaborations"),
-    url: () => router.push('/home'),
+    url: () => router.push('/(dashboard)/index'),
     img: require('@/assets/images/icons/dashboard.svg'),
     icons: <MaterialIcons name='computer' size={80} color='black' />
   },
